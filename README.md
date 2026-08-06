@@ -1,240 +1,100 @@
-<div align="center">
+# SlitherSupreme
 
-# 🐍 Neon Snake
+A polished browser-based Snake game built with HTML, CSS, and vanilla JavaScript. The project combines classic arcade gameplay with modern UI elements, responsive controls, dynamic visuals, power-ups, achievements, XP progression, and persistent local storage.
 
-### Modern Neon Arcade Game
+## About This Repository
 
-<p>
-A sleek browser-based Snake game featuring smooth gameplay, responsive controls,
-persistent high scores, immersive sound effects, and a vibrant neon-inspired interface.
-</p>
+This repository contains a complete front-end game experience for a premium-style Snake game. It is structured as a modular JavaScript application with separate concerns for game logic, rendering, input handling, UI, persistence, sound, and effects.
 
-<br>
+The project is intended as both a playable game and a clean example of lightweight browser game development without external frameworks or dependencies.
 
-<img src="https://img.shields.io/badge/HTML5-Markup-E34F26?style=flat-square&logo=html5&logoColor=white">
-<img src="https://img.shields.io/badge/CSS3-Styling-1572B6?style=flat-square&logo=css3&logoColor=white">
-<img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript&logoColor=black">
-<img src="https://img.shields.io/badge/Responsive-Yes-00C853?style=flat-square">
-<img src="https://img.shields.io/badge/Status-Completed-2962FF?style=flat-square">
-<img src="https://img.shields.io/badge/License-MIT-8E24AA?style=flat-square">
+## Features
 
-<br><br>
+- Smooth snake movement and collision handling
+- Responsive keyboard and touch controls
+- Animated visual effects and premium UI styling
+- Food variety with scoring differences
+- Power-ups such as speed boost, slow motion, shield, magnet, and ghost mode
+- Achievement system and XP-based progression
+- Persistent high score and settings using local storage
+- Adaptive difficulty presets and customizable themes
 
-</div>
-
----
-
-# ✦ About
-
-**Neon Snake** is a modern reinterpretation of the timeless Snake arcade game, developed entirely with **HTML**, **CSS**, and **Vanilla JavaScript**.
-
-Designed with a clean neon aesthetic and modular architecture, the game delivers smooth movement, responsive controls, persistent score storage, sound management, and an engaging gameplay experience while maintaining high performance without external libraries.
-
-Whether you're revisiting a nostalgic classic or exploring browser game development, Neon Snake offers a polished experience with a focus on simplicity, speed, and clean code.
-
----
-
-# ✦ Key Features
-
-✨ Modern Neon User Interface
-
-🎮 Smooth Arcade Gameplay
-
-⚡ Responsive Keyboard Controls
-
-🏆 High Score Persistence
-
-💾 Local Storage Integration
-
-🔊 Sound Effects with Toggle
-
-📈 Live Score Counter
-
-📱 Responsive Layout
-
-🚀 Lightweight & Fast
-
-🧩 Modular JavaScript Architecture
-
-🎯 Progressive Difficulty
-
-🖥️ Cross-Browser Compatibility
-
----
-
-# ✦ Technology Stack
-
-| Technology | Usage |
-|------------|-------|
-| HTML5 | Semantic Structure |
-| CSS3 | Styling & Responsive Design |
-| JavaScript (ES6+) | Game Logic |
-| Local Storage | High Score Persistence |
-
----
-
-# ✦ Project Structure
+## Project Structure
 
 ```text
-Neon-Snake
-│
-├── css
+snake-game/
+├── css/
 │   └── style.css
-│
-├── js
+├── js/
+│   ├── achievements.js
 │   ├── config.js
+│   ├── effects.js
 │   ├── game.js
 │   ├── input.js
+│   ├── main.js
+│   ├── powerups.js
 │   ├── renderer.js
 │   ├── sound.js
 │   ├── storage.js
-│   └── ui.js
-│
+│   ├── ui.js
+│   └── utils.js
 ├── index.html
-├── LICENSE
+├── server.js
+├── TODO.md
 └── README.md
 ```
 
----
+## Gameplay Overview
 
-# ✦ Gameplay
+The objective is to guide the snake across the board, collect food, grow in length, and avoid collisions with walls or the snake itself. As the game progresses, power-ups and score multipliers increase the level of challenge and reward.
 
-The objective is simple but increasingly challenging.
+## Controls
 
-- Control the snake using your keyboard.
-- Collect food to increase your score.
-- Every food item makes the snake longer.
-- Avoid walls and self-collision.
-- Challenge yourself to beat your highest score.
+- Arrow keys or WASD: move the snake
+- Space: pause or resume
+- Enter: confirm actions
+- M: mute sound
+- Touch buttons on mobile: directional movement
 
-As the snake grows, navigating the board becomes progressively more demanding, rewarding precision and quick decision-making.
+## Technology Stack
 
----
-
-# ✦ Controls
-
-| Key | Action |
-|------|--------|
-| ⬆️ | Move Up |
-| ⬇️ | Move Down |
-| ⬅️ | Move Left |
-| ➡️ | Move Right |
-
----
-
-# ✦ Getting Started
-
-Clone the repository
-
-```bash
-git clone https://github.com/yourusername/neon-snake.git
-```
-
-Navigate into the project
-
-```bash
-cd neon-snake
-```
-
-Launch the game
-
-```text
-Open index.html in your browser
-```
-
-No installation.
-
-No dependencies.
-
-No frameworks.
-
-Simply open and play.
-
----
-
-# ✦ Architecture
-
-The project follows a modular JavaScript structure to keep responsibilities clearly separated.
-
-```
-config.js     → Game configuration
-
-game.js       → Main game loop
-
-input.js      → Keyboard input handling
-
-renderer.js   → Rendering engine
-
-sound.js      → Audio management
-
-storage.js    → Local storage operations
-
-ui.js         → UI updates
-```
-
----
-
-# ✦ Performance
-
-✔ Lightweight
-
-✔ Fast Rendering
-
-✔ Clean Codebase
-
-✔ Responsive Layout
-
-✔ Optimized Game Loop
-
-✔ Minimal Resource Usage
-
-✔ Zero External Libraries
-
----
-
-# ✦ Future Improvements
-
-- Multiple Difficulty Levels
-- Pause & Resume
-- Mobile Touch Controls
-- Power-Ups
-- Obstacles
-- Theme Switching
-- Animated Background Effects
-- Leaderboard
-- Achievement System
-- Statistics Dashboard
-- Fullscreen Mode
-
----
-
-# ✦ Learning Outcomes
-
-This project demonstrates practical implementation of
-
-- JavaScript Modules
-- DOM Manipulation
-- Game Loop Design
-- Collision Detection
-- Event Handling
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- Web Audio API
 - Local Storage
-- Responsive Design
-- State Management
-- UI Development
-- Front-End Architecture
 
----
+## Getting Started
 
-# ✦ License
+### Option 1: Open directly
+
+Open the project folder in a browser and launch index.html.
+
+### Option 2: Run a local server
+
+From the project root, run:
+
+```bash
+node server.js
+```
+
+Then open the local address shown in the terminal in your browser.
+
+## Architecture Notes
+
+The game is organized into modular JavaScript files:
+
+- config.js: constants, difficulty settings, food definitions, and UI content
+- game.js: game state, rules, progression, and main loop
+- input.js: keyboard and touch control handling
+- renderer.js: canvas-based rendering for the board and snake
+- ui.js: HUD, overlays, menus, and panels
+- storage.js: local persistence for scores, XP, settings, and unlocks
+- sound.js: procedural sound effects and music
+- achievements.js: achievement tracking and unlock logic
+- powerups.js: power-up spawning and lifecycle management
+
+## License
 
 This project is licensed under the MIT License.
 
----
-
-<div align="center">
-
-### ⭐ If you found this project interesting, consider giving it a star.
-
-Designed & Developed using HTML, CSS and JavaScript.
-
-</div>
