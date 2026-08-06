@@ -1,6 +1,6 @@
-# neon-snake-game
+# SlitherSupreme
 
-neon-snake-game is a browser-based Snake game built with HTML, CSS, and vanilla JavaScript. The repository delivers a polished arcade experience with responsive controls, a modular architecture, sound support, persistent progress tracking, and a modern visual presentation.
+SlitherSupreme is a polished browser-based Snake game built with HTML, CSS, and vanilla JavaScript, featuring smooth gameplay, responsive controls, power-ups, achievements, XP progression, and persistent local storage.
 
 ## Repository Overview
 
