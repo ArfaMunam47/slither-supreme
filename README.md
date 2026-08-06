@@ -1,28 +1,28 @@
-# SlitherSupreme
+# neon-snake-game
 
-A polished browser-based Snake game built with HTML, CSS, and vanilla JavaScript. The project combines classic arcade gameplay with modern UI elements, responsive controls, dynamic visuals, power-ups, achievements, XP progression, and persistent local storage.
+neon-snake-game is a browser-based Snake game built with HTML, CSS, and vanilla JavaScript. The repository delivers a polished arcade experience with responsive controls, a modular architecture, sound support, persistent progress tracking, and a modern visual presentation.
 
-## About This Repository
+## Repository Overview
 
-This repository contains a complete front-end game experience for a premium-style Snake game. It is structured as a modular JavaScript application with separate concerns for game logic, rendering, input handling, UI, persistence, sound, and effects.
+This repository contains the complete implementation of the game, including the HTML entry point, CSS styling, and JavaScript modules that manage rendering, input, game logic, persistence, audio, and UI.
 
-The project is intended as both a playable game and a clean example of lightweight browser game development without external frameworks or dependencies.
+The project is designed to be lightweight and framework-free while demonstrating clean separation of concerns, maintainable code structure, and browser-friendly performance.
 
-## Features
+## Core Functionality
 
-- Smooth snake movement and collision handling
 - Responsive keyboard and touch controls
-- Animated visual effects and premium UI styling
-- Food variety with scoring differences
-- Power-ups such as speed boost, slow motion, shield, magnet, and ghost mode
-- Achievement system and XP-based progression
-- Persistent high score and settings using local storage
-- Adaptive difficulty presets and customizable themes
+- Canvas-based board rendering
+- Food spawning and score-driven growth
+- Collision detection for walls and self-intersection
+- Power-up system with temporary gameplay modifiers
+- Achievement tracking and XP progression
+- High score and settings persistence via local storage
+- Adaptive difficulty and theme selection
 
 ## Project Structure
 
 ```text
-snake-game/
+neon-snake-game/
 ├── css/
 │   └── style.css
 ├── js/
@@ -44,9 +44,9 @@ snake-game/
 └── README.md
 ```
 
-## Gameplay Overview
+## Gameplay Summary
 
-The objective is to guide the snake across the board, collect food, grow in length, and avoid collisions with walls or the snake itself. As the game progresses, power-ups and score multipliers increase the level of challenge and reward.
+Players control a snake on a grid-based board, collecting items to increase score and length while avoiding collisions. The game introduces power-ups and score-based progression to enhance replayability.
 
 ## Controls
 
@@ -54,45 +54,45 @@ The objective is to guide the snake across the board, collect food, grow in leng
 - Space: pause or resume
 - Enter: confirm actions
 - M: mute sound
-- Touch buttons on mobile: directional movement
+- Touch controls: directional movement on supported devices
 
-## Technology Stack
+## Technology
 
-- HTML5
-- CSS3
-- JavaScript (ES6+)
-- Web Audio API
-- Local Storage
+- HTML5 for structure
+- CSS3 for layout and styling
+- JavaScript (ES6+) for game logic and interaction
+- Web Audio API for sound effects and music
+- Local Storage for persistence
 
-## Getting Started
+## Setup
 
-### Option 1: Open directly
+### Open locally
 
-Open the project folder in a browser and launch index.html.
+Open `index.html` directly in a browser.
 
-### Option 2: Run a local server
+### Run with Node
 
-From the project root, run:
+From the project root:
 
 ```bash
 node server.js
 ```
 
-Then open the local address shown in the terminal in your browser.
+Then open the displayed local URL in a browser.
 
-## Architecture Notes
+## Architecture
 
-The game is organized into modular JavaScript files:
-
-- config.js: constants, difficulty settings, food definitions, and UI content
-- game.js: game state, rules, progression, and main loop
-- input.js: keyboard and touch control handling
-- renderer.js: canvas-based rendering for the board and snake
-- ui.js: HUD, overlays, menus, and panels
-- storage.js: local persistence for scores, XP, settings, and unlocks
-- sound.js: procedural sound effects and music
-- achievements.js: achievement tracking and unlock logic
-- powerups.js: power-up spawning and lifecycle management
+- `config.js`: game constants, definitions, and UI content
+- `game.js`: application state, game rules, and loop management
+- `input.js`: keyboard and touch input handling
+- `renderer.js`: canvas drawing and visual animation
+- `ui.js`: HUD, overlay screens, menus, and panel logic
+- `storage.js`: persistence for scores, settings, unlocks, and achievements
+- `sound.js`: audio generation, playback, and toggles
+- `achievements.js`: achievement detection and reward handling
+- `powerups.js`: power-up spawning and lifecycle management
+- `effects.js`: visual effects and particle behavior
+- `utils.js`: general utility functions
 
 ## License
 
