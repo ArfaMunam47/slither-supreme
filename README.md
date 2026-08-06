@@ -22,7 +22,7 @@ The project is designed to be lightweight and framework-free while demonstrating
 ## Project Structure
 
 ```text
-neon-snake-game/
+slither-supreme/
 ├── css/
 │   └── style.css
 ├── js/
