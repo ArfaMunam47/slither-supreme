@@ -4,11 +4,7 @@
 // power-up auras, and particle overlays.
 // ─────────────────────────────────────────────────────────────
 
-import { GRID_SIZE, MAX_CELL_SIZE, MIN_CELL_SIZE, FOOD_TYPES, POWERUPS } from "./config.js";
-import { setupCanvas, clamp, gradientAt, lerp, hexToRgba } from "./utils.js";
-import { Effects } from "./effects.js";
-
-export class Renderer {
+class Renderer {
   constructor(canvas) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
@@ -225,7 +221,7 @@ export class Renderer {
     const s = this.cellSize;
     const t = now / 1000;
 
-// Static rotating sparkles around (drawn, not spawned as particles)
+    // Static rotating sparkles around (drawn, not spawned as particles)
     const sparkleCount = food.type === "diamond" || food.type === "fruit" ? 3 : 2;
     for (let i = 0; i < sparkleCount; i++) {
       const a = t * 2 + (i * Math.PI * 2) / sparkleCount;

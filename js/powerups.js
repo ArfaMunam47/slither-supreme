@@ -3,10 +3,7 @@
 // Spawning, lifetime tracking, and effect management.
 // ─────────────────────────────────────────────────────────────
 
-import { POWERUPS, POWERUP_WEIGHTS, POWERUP_SPAWN_START_SCORE, POWERUP_SPAWN_INTERVAL_SCORE, POWERUP_MAX_ACTIVE } from "./config.js";
-import { weightedPick } from "./utils.js";
-
-export class PowerupManager {
+class PowerupManager {
   constructor(stateRef) {
     this.stateRef = stateRef;
     this.active = []; // { id, type, expiresAt }
@@ -20,7 +17,7 @@ export class PowerupManager {
     this._lastSpawnScore = 0;
   }
 
-isOnSnake(cell) {
+  isOnSnake(cell) {
     return this.stateRef().snake.some((s) => s.x === cell.x && s.y === cell.y);
   }
 

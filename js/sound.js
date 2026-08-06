@@ -4,9 +4,7 @@
 // lightweight step sequencer. No external audio files needed.
 // ─────────────────────────────────────────────────────────────
 
-import { getSettings, saveSettings } from "./storage.js";
-
-export class SoundManager {
+class SoundManager {
   constructor() {
     this.sfxEnabled = true;
     this.musicEnabled = true;

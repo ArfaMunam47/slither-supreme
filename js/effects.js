@@ -4,10 +4,7 @@
 // glow pulses. All overlay-draw friendly for the canvas.
 // ─────────────────────────────────────────────────────────────
 
-import { EFFECTS } from "./config.js";
-import { rand, randInt, clamp, lerp } from "./utils.js";
-
-export class Effects {
+class Effects {
   constructor() {
     this.particles = [];
     this.floatingTexts = [];

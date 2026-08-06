@@ -3,10 +3,7 @@
 // Registry lookup, unlock checks, and XP rewards.
 // ─────────────────────────────────────────────────────────────
 
-import { ACHIEVEMENTS, XP_GAINS } from "./config.js";
-import { isAchievementUnlocked, unlockAchievement, addXP, getUnlockedAchievements } from "./storage.js";
-
-export class AchievementManager {
+class AchievementManager {
   constructor(onUnlock) {
     this.onUnlock = onUnlock; // callback (achievementDef, xpInfo) => void
     this._sessionUnlocks = [];

@@ -4,25 +4,7 @@
 // difficulty, and all visual/audio feedback.
 // ─────────────────────────────────────────────────────────────
 
-import {
-  GRID_SIZE, BASE_TICK_MS, GAME_STATUS, FOOD_TYPES, POWERUPS,
-  XP_GAINS, COMBO_WINDOW_MS, COMBO_MAX_MULTIPLIER, SNAKE_SKINS, BOARD_THEMES,
-} from "./config.js";
-import { Renderer } from "./renderer.js";
-import { UIController } from "./ui.js";
-import { InputController } from "./input.js";
-import { SoundManager } from "./sound.js";
-import { PowerupManager } from "./powerups.js";
-import { AchievementManager } from "./achievements.js";
-import {
-  getHighScore, saveHighScore, getSettings, saveSettings,
-  getSkinDef, getThemeDef, getDifficultyDef,
-  addXP, getLevelInfo, getXP, unlockSkin, unlockTheme,
-  isSkinUnlocked, isThemeUnlocked, getDayBest, saveDayBest,
-} from "./storage.js";
-import { weightedPick, randInt } from "./utils.js";
-
-export class SnakeGame {
+class SnakeGame {
   constructor() {
     const settings = getSettings();
     this.settings = settings;
@@ -136,7 +118,7 @@ export class SnakeGame {
     if (enabled) this.sound.startMusic();
   }
 
-buySkin(id) {
+  buySkin(id) {
     const def = SNAKE_SKINS[id];
     if (!def || isSkinUnlocked(id)) return;
     const xp = getXP();
@@ -154,7 +136,7 @@ buySkin(id) {
     }
   }
 
-buyTheme(id) {
+  buyTheme(id) {
     const def = BOARD_THEMES[id];
     if (!def || isThemeUnlocked(id)) return;
     const xp = getXP();
@@ -457,7 +439,7 @@ buyTheme(id) {
     // Effects
     const cx = eaten.x, cy = eaten.y;
     this.renderer.addEatEffect(cx, cy, typeInfo.color);
-this.renderer.floatText(
+    this.renderer.floatText(
       cx, cy,
       this.combo >= 2 ? `+${gained} ×${this.combo}` : `+${gained}`,
       typeInfo.color,
@@ -504,7 +486,7 @@ this.renderer.floatText(
 
   _onPowerupCollected(item) {
     const def = POWERUPS[item.type];
-this.renderer.addPowerupEffect(this.state.snake[0].x, this.state.snake[0].y, def.color);
+    this.renderer.addPowerupEffect(this.state.snake[0].x, this.state.snake[0].y, def.color);
     this.sound.play("powerup");
 
     // XP + achievement

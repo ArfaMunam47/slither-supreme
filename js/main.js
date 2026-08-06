@@ -3,8 +3,6 @@
 // Wires up the game and bootstraps the animated background.
 // ─────────────────────────────────────────────────────────────
 
-import { SnakeGame } from "./game.js";
-
 // Boot floating particle background (CSS handles aurora waves).
 function initBackgroundParticles() {
   const canvas = document.getElementById("bgCanvas");

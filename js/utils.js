@@ -3,21 +3,21 @@
 // Pure functions, no side effects.
 // ─────────────────────────────────────────────────────────────
 
-export const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
-export const lerp = (a, b, t) => a + (b - a) * t;
+const lerp = (a, b, t) => a + (b - a) * t;
 
-export const rand = (min, max) => Math.random() * (max - min) + min;
+const rand = (min, max) => Math.random() * (max - min) + min;
 
-export const randInt = (min, max) => Math.floor(rand(min, max + 1));
+const randInt = (min, max) => Math.floor(rand(min, max + 1));
 
-export const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-export const dist = (ax, ay, bx, by) =>
+const dist = (ax, ay, bx, by) =>
   Math.hypot(bx - ax, by - ay);
 
 /** Weighted random selection from { key: weight } map. Returns key or null. */
-export function weightedPick(map) {
+function weightedPick(map) {
   const entries = Object.entries(map);
   const total = entries.reduce((sum, [, w]) => sum + w, 0);
   let roll = Math.random() * total;
@@ -29,7 +29,7 @@ export function weightedPick(map) {
 }
 
 /** Interpolate a single hex color to a css color string with alpha. */
-export function hexToRgba(hex, alpha = 1) {
+function hexToRgba(hex, alpha = 1) {
   const h = hex.replace("#", "");
   const full = h.length === 3 ? h.split("").map((c) => c + c).join("") : h;
   const num = parseInt(full, 16);
@@ -40,7 +40,7 @@ export function hexToRgba(hex, alpha = 1) {
 }
 
 /** Return a color from a gradient array at progress t (0..1). */
-export function gradientAt(colors, t) {
+function gradientAt(colors, t) {
   if (colors.length === 1) return colors[0];
   const clamped = clamp(t, 0, 0.999999);
   const pos = clamped * (colors.length - 1);
@@ -62,7 +62,7 @@ function parseHex(hex) {
 }
 
 /** Lighten or darken a hex color by amount (-1..1). */
-export function shade(hex, amount) {
+function shade(hex, amount) {
   const { r, g, b } = parseHex(hex);
   const t = amount < 0 ? 0 : 255;
   const p = Math.abs(amount);
@@ -73,7 +73,7 @@ export function shade(hex, amount) {
 }
 
 /** DOM helper — create element with class(es). */
-export function el(tag, className, text) {
+function el(tag, className, text) {
   const node = document.createElement(tag);
   if (className) node.className = className;
   if (text !== undefined) node.textContent = text;
@@ -81,12 +81,12 @@ export function el(tag, className, text) {
 }
 
 /** Format a number with commas. */
-export function formatNumber(n) {
+function formatNumber(n) {
   return Number(n).toLocaleString("en-US");
 }
 
 /** Create a throttled function. */
-export function throttle(fn, wait) {
+function throttle(fn, wait) {
   let last = 0;
   return (...args) => {
     const now = Date.now();
@@ -98,7 +98,7 @@ export function throttle(fn, wait) {
 }
 
 /** Device pixel ratio aware canvas sizing. */
-export function setupCanvas(canvas, width, height) {
+function setupCanvas(canvas, width, height) {
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
   canvas.width = Math.floor(width * dpr);
   canvas.height = Math.floor(height * dpr);
