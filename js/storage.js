@@ -4,8 +4,6 @@
 // and achievement flags with safe try/catch wrappers.
 // ─────────────────────────────────────────────────────────────
 
-import { STORAGE, SNAKE_SKINS, BOARD_THEMES, DIFFICULTIES, ACHIEVEMENTS } from "./config.js";
-
 const DEFAULT_SETTINGS = {
   sound: true,
   music: true,
@@ -42,11 +40,11 @@ function writeJSON(key, value) {
 }
 
 // ── High score ───────────────────────────────────────────────
-export function getHighScore() {
+function getHighScore() {
   return readJSON(STORAGE.highScore, DEFAULTS.highScore);
 }
 
-export function saveHighScore(score) {
+function saveHighScore(score) {
   const current = getHighScore();
   if (score > current) {
     writeJSON(STORAGE.highScore, score);
@@ -56,11 +54,11 @@ export function saveHighScore(score) {
 }
 
 // ── Day best ─────────────────────────────────────────────────
-export function getDayBest() {
+function getDayBest() {
   return readJSON(STORAGE.dayBest, DEFAULTS.dayBest);
 }
 
-export function saveDayBest(score) {
+function saveDayBest(score) {
   if (score > getDayBest()) {
     writeJSON(STORAGE.dayBest, score);
     return score;
@@ -69,34 +67,34 @@ export function saveDayBest(score) {
 }
 
 // ── XP / Level ───────────────────────────────────────────────
-export function getXP() {
+function getXP() {
   return readJSON(STORAGE.xp, DEFAULTS.xp);
 }
 
-export function addXP(amount) {
+function addXP(amount) {
   const xp = Math.max(0, getXP() + Math.floor(amount));
   writeJSON(STORAGE.xp, xp);
   return getLevelInfo(xp);
 }
 
-export function getLevelInfo(xp) {
+function getLevelInfo(xp) {
   const level = Math.floor(xp / 100) + 1;
   const levelXp = xp % 100;
   return { level, levelXp, xp, nextLevelXp: 100 };
 }
 
 // ── Settings ─────────────────────────────────────────────────
-export function getSettings() {
+function getSettings() {
   const saved = readJSON(STORAGE.settings, null);
   return { ...DEFAULT_SETTINGS, ...(saved || {}) };
 }
 
-export function saveSettings(settings) {
+function saveSettings(settings) {
   writeJSON(STORAGE.settings, settings);
 }
 
 // ── Unlocks (skins / themes) ─────────────────────────────────
-export function getUnlocks() {
+function getUnlocks() {
   const saved = readJSON(STORAGE.unlocks, null);
   return {
     skins: saved?.skins || [...DEFAULTS.unlocks.skins],
@@ -104,7 +102,7 @@ export function getUnlocks() {
   };
 }
 
-export function unlockSkin(skinId) {
+function unlockSkin(skinId) {
   const unlocks = getUnlocks();
   if (!unlocks.skins.includes(skinId)) {
     unlocks.skins.push(skinId);
@@ -113,7 +111,7 @@ export function unlockSkin(skinId) {
   return unlocks;
 }
 
-export function unlockTheme(themeId) {
+function unlockTheme(themeId) {
   const unlocks = getUnlocks();
   if (!unlocks.themes.includes(themeId)) {
     unlocks.themes.push(themeId);
@@ -122,24 +120,24 @@ export function unlockTheme(themeId) {
   return unlocks;
 }
 
-export function isSkinUnlocked(skinId) {
+function isSkinUnlocked(skinId) {
   return getUnlocks().skins.includes(skinId);
 }
 
-export function isThemeUnlocked(themeId) {
+function isThemeUnlocked(themeId) {
   return getUnlocks().themes.includes(themeId);
 }
 
 // ── Achievements ─────────────────────────────────────────────
-export function getUnlockedAchievements() {
+function getUnlockedAchievements() {
   return readJSON(STORAGE.achievements, DEFAULTS.achievements);
 }
 
-export function isAchievementUnlocked(id) {
+function isAchievementUnlocked(id) {
   return getUnlockedAchievements().includes(id);
 }
 
-export function unlockAchievement(id) {
+function unlockAchievement(id) {
   const list = getUnlockedAchievements();
   if (list.includes(id)) return false;
   list.push(id);
@@ -148,18 +146,18 @@ export function unlockAchievement(id) {
 }
 
 // ── Validator helpers for UI ─────────────────────────────────
-export function getSkinDef(skinId) {
+function getSkinDef(skinId) {
   return SNAKE_SKINS[skinId] || SNAKE_SKINS.aurora;
 }
 
-export function getThemeDef(themeId) {
+function getThemeDef(themeId) {
   return BOARD_THEMES[themeId] || BOARD_THEMES.candy;
 }
 
-export function getDifficultyDef(difficultyId) {
+function getDifficultyDef(difficultyId) {
   return DIFFICULTIES[difficultyId] || DIFFICULTIES.classic;
 }
 
-export function getAchievementDefs() {
+function getAchievementDefs() {
   return Object.values(ACHIEVEMENTS);
 }

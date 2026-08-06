@@ -3,11 +3,7 @@
 // HUD, main menu, pause, settings, shop, achievements, toasts.
 // ─────────────────────────────────────────────────────────────
 
-import { GAME_STATUS, OVERLAY_CONTENT, SNAKE_SKINS, BOARD_THEMES, DIFFICULTIES, ACHIEVEMENTS, FOOD_TYPES } from "./config.js";
-import { getHighScore, getLevelInfo, getXP, getSettings, getUnlocks, isSkinUnlocked, isThemeUnlocked, getAchievementDefs, getUnlockedAchievements } from "./storage.js";
-import { el, formatNumber } from "./utils.js";
-
-export class UIController {
+class UIController {
   constructor(onAction) {
     this.onAction = onAction; // { start, pause, restart, setSkin, setTheme, setDifficulty, toggleSound, toggleMusic, resume }
     this.els = {};
@@ -42,7 +38,7 @@ export class UIController {
       soundBtn: g("soundBtn"),
       musicBtn: g("musicBtn"),
       menuBtn: g("menuBtn"),
-toast: g("toast"),
+      toast: g("toast"),
       toastTitle: g("toastTitle"),
       toastMsg: g("toastMsg"),
       // panels
@@ -68,6 +64,9 @@ toast: g("toast"),
       shopThemes: g("shopThemes"),
       xpShop: g("xpShop"),
     };
+    this.settingsPanel = this.els.settingsPanel;
+    this.shopPanel = this.els.shopPanel;
+    this.achPanel = this.els.achPanel;
   }
 
   _buildMenus() {
@@ -285,7 +284,7 @@ toast: g("toast"),
     el.classList.toggle("is-live", status === GAME_STATUS.PLAYING);
   }
 
-// ── Power-up chips ─────────────────────────────────────────
+  // ── Power-up chips ─────────────────────────────────────────
   updatePowerChips(active, now) {
     const { els } = this;
     els.powerBar.innerHTML = "";

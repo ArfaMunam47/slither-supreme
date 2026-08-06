@@ -1,28 +1,30 @@
-# SlitherSupreme — Implementation Checklist
+# Task: Make the Snake game work in browser, Live Server, and node server
 
-## Foundational Modules
-- [x] 1. `js/config.js` — Expanded config (food types, power-ups, skins, themes, difficulty, achievements, XP)
-- [x] 2. `js/utils.js` — Math/color/random/DOM helpers
-- [x] 3. `js/storage.js` — Persistence (high score, XP, level, unlocks, settings)
+## Root Cause
+The game used ES6 modules (`import`/`export`). Browsers block ES modules when opening
+`index.html` directly via the `file://` protocol (CORS security), so only the static
+layout renders and the game never initializes.
 
-## Systems
-- [x] 4. `js/sound.js` — Web Audio engine (music + per-food SFX + power-up + achievement + fanfare)
-- [x] 5. `js/input.js` — Keyboard + touch + menu navigation
-- [x] 6. `js/effects.js` — Particle system, screen shake, floating text, fireworks
-- [x] 7. `js/powerups.js` — Power-up spawning & effect handling
-- [x] 8. `js/achievements.js` — Achievement registry + unlock + XP
+## Solution
+Converted all ES modules to classic global scripts and load them in the correct
+dependency order in `index.html`.
 
-## Rendering & UI
-- [x] 9. `js/renderer.js` — 3D snake, animated food, glass board, themes, effects
-- [x] 10. `js/ui.js` — HUD, menus, settings, shop, achievements, toasts
-- [x] 11. `js/game.js` — Game engine orchestration
-- [x] 12. `js/main.js` — Entry point wiring
-
-## Assets & Styling
-- [x] 13. `index.html` — New structure loading ES modules
-- [x] 14. `css/style.css` — Vibrant 2026 design system
+## Steps
+- [x] 1. Convert `js/config.js` (remove `export`)
+- [x] 2. Convert `js/utils.js` (remove `export`)
+- [x] 3. Convert `js/storage.js` (remove `import`/`export`)
+- [x] 4. Convert `js/effects.js` (remove `import`/`export`)
+- [x] 5. Convert `js/sound.js` (remove `import`/`export`)
+- [x] 6. Convert `js/input.js` (remove `import`/`export`)
+- [x] 7. Convert `js/renderer.js` (remove `import`/`export`)
+- [x] 8. Convert `js/powerups.js` (remove `import`/`export`)
+- [x] 9. Convert `js/achievements.js` (remove `import`/`export`)
+- [x] 10. Convert `js/ui.js` (remove `import`/`export`)
+- [x] 11. Convert `js/game.js` (remove `import`/`export`)
+- [x] 12. Convert `js/main.js` (remove `import`)
+- [x] 13. Update `index.html` to load scripts as classic `<script>` tags in order
+- [x] 14. Verify no remaining `import`/`export` + all JS files pass syntax check
 
 ## Verification
-- [x] 15. Review all modules for correctness & cross-imports
-- [x] 16. All 12 modules pass `node --check` syntax validation
-- [x] 17. Added `server.js` for easy local serving (ES modules require HTTP)
+- Confirmed no `import`/`export` statements remain in any JS file.
+- All 12 JS files pass `node --check` syntax validation.

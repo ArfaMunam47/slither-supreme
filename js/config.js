@@ -3,12 +3,12 @@
 // Central place for all tunable game constants & definitions.
 // ─────────────────────────────────────────────────────────────
 
-export const GRID_SIZE = 20;
-export const BASE_TICK_MS = 135;
-export const MAX_CELL_SIZE = 24;
-export const MIN_CELL_SIZE = 14;
+const GRID_SIZE = 20;
+const BASE_TICK_MS = 135;
+const MAX_CELL_SIZE = 24;
+const MIN_CELL_SIZE = 14;
 
-export const GAME_STATUS = {
+const GAME_STATUS = {
   READY: "ready",
   PLAYING: "playing",
   PAUSED: "paused",
@@ -16,21 +16,21 @@ export const GAME_STATUS = {
   VICTORY: "victory",
 };
 
-export const DIRECTION_VECTORS = {
+const DIRECTION_VECTORS = {
   up: { x: 0, y: -1 },
   down: { x: 0, y: 1 },
   left: { x: -1, y: 0 },
   right: { x: 1, y: 0 },
 };
 
-export const OPPOSITE = {
+const OPPOSITE = {
   up: "down",
   down: "up",
   left: "right",
   right: "left",
 };
 
-export const KEY_DIRECTIONS = {
+const KEY_DIRECTIONS = {
   ArrowUp: "up",
   ArrowDown: "down",
   ArrowLeft: "left",
@@ -46,7 +46,7 @@ export const KEY_DIRECTIONS = {
 };
 
 // ── Storage keys ─────────────────────────────────────────────
-export const STORAGE = {
+const STORAGE = {
   highScore: "slitherHighScore",
   xp: "slitherXP",
   dayBest: "slitherDayBest",
@@ -56,7 +56,7 @@ export const STORAGE = {
 };
 
 // ── Food types ───────────────────────────────────────────────
-export const FOOD_TYPES = {
+const FOOD_TYPES = {
   crystal: {
     id: "crystal",
     name: "Crystal",
@@ -100,7 +100,7 @@ export const FOOD_TYPES = {
 };
 
 // ── Power-ups ────────────────────────────────────────────────
-export const POWERUPS = {
+const POWERUPS = {
   speed: {
     id: "speed",
     name: "Speed Boost",
@@ -157,7 +157,7 @@ export const POWERUPS = {
   },
 };
 
-export const POWERUP_WEIGHTS = {
+const POWERUP_WEIGHTS = {
   speed: 18,
   slowmo: 14,
   double: 16,
@@ -166,12 +166,12 @@ export const POWERUP_WEIGHTS = {
   shield: 26,
 };
 
-export const POWERUP_SPAWN_START_SCORE = 5;
-export const POWERUP_SPAWN_INTERVAL_SCORE = 7;
-export const POWERUP_MAX_ACTIVE = 2;
+const POWERUP_SPAWN_START_SCORE = 5;
+const POWERUP_SPAWN_INTERVAL_SCORE = 7;
+const POWERUP_MAX_ACTIVE = 2;
 
 // ── Snake skins ──────────────────────────────────────────────
-export const SNAKE_SKINS = {
+const SNAKE_SKINS = {
   aurora: {
     id: "aurora",
     name: "Aurora",
@@ -207,7 +207,7 @@ export const SNAKE_SKINS = {
 };
 
 // ── Board themes ─────────────────────────────────────────────
-export const BOARD_THEMES = {
+const BOARD_THEMES = {
   candy: {
     id: "candy",
     name: "Candy Cloud",
@@ -251,7 +251,7 @@ export const BOARD_THEMES = {
 };
 
 // ── Difficulty presets ───────────────────────────────────────
-export const DIFFICULTIES = {
+const DIFFICULTIES = {
   casual: {
     id: "casual",
     name: "Casual",
@@ -291,8 +291,8 @@ export const DIFFICULTIES = {
 };
 
 // ── XP / Levels ──────────────────────────────────────────────
-export const XP_PER_LEVEL = 100;
-export const XP_GAINS = {
+const XP_PER_LEVEL = 100;
+const XP_GAINS = {
   eat: 2,
   eatGold: 5,
   powerup: 10,
@@ -302,7 +302,7 @@ export const XP_GAINS = {
 };
 
 // ── Achievements ─────────────────────────────────────────────
-export const ACHIEVEMENTS = {
+const ACHIEVEMENTS = {
   first_blood: { id: "first_blood", name: "First Bite", icon: "🍎", desc: "Eat your first food", xp: 15 },
   score_10: { id: "score_10", name: "Double Digits", icon: "🔟", desc: "Reach a score of 10", xp: 20 },
   score_25: { id: "score_25", name: "Snake on Fire", icon: "🔥", desc: "Reach a score of 25", xp: 35 },
@@ -321,7 +321,7 @@ export const ACHIEVEMENTS = {
 };
 
 // ── Effects tuning ───────────────────────────────────────────
-export const EFFECTS = {
+const EFFECTS = {
   screenShakeDuration: 350,
   screenShakeMaxOffset: 10,
   fireworkCount: 40,
@@ -331,11 +331,11 @@ export const EFFECTS = {
 };
 
 // Level-up thresholds for combo
-export const COMBO_WINDOW_MS = 2500;
-export const COMBO_MAX_MULTIPLIER = 10;
+const COMBO_WINDOW_MS = 2500;
+const COMBO_MAX_MULTIPLIER = 10;
 
 // ── Overlay / menu content ───────────────────────────────────
-export const OVERLAY_CONTENT = {
+const OVERLAY_CONTENT = {
   ready: {
     icon: "🐍",
     title: "Ready to Slither",

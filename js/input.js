@@ -3,9 +3,7 @@
 // Keyboard + touch controls + menu navigation keys.
 // ─────────────────────────────────────────────────────────────
 
-import { KEY_DIRECTIONS, OPPOSITE } from "./config.js";
-
-export class InputController {
+class InputController {
   constructor(onDirection, onPause, onMenu) {
     this.onDirection = onDirection;
     this.onPause = onPause;
