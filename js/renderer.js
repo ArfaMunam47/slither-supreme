@@ -120,8 +120,7 @@ export class Renderer {
     headGrad.addColorStop(0.6, gradientAt(skin.gradient, 0));
     headGrad.addColorStop(1, hexToRgba(gradientAt(skin.gradient, 0), 0.1));
     ctx.fillStyle = headGrad;
-    ctx.beginPath();
-    ctx.roundRect(x + 1.5, y + 1.5 + bob, size - 3, size - 3, size * 0.36);
+    this._drawRoundedRect(ctx, x + 1.5, y + 1.5 + bob, size - 3, size - 3, size * 0.36);
     ctx.fill();
     ctx.restore();
 
@@ -191,13 +190,7 @@ export class Renderer {
 
       const r = size * 0.30;
       ctx.beginPath();
-      ctx.roundRect(
-        px + 1.5,
-        py + 1.5,
-        size - 3,
-        size - 3,
-        r
-      );
+      this._drawRoundedRect(ctx, px + 1.5, py + 1.5, size - 3, size - 3, r);
       ctx.fill();
       if (i % 3 === 0) ctx.stroke();
       ctx.restore();
@@ -469,6 +462,20 @@ export class Renderer {
     this.effects.draw(ctx);
 
     ctx.restore();
+  }
+
+  _drawRoundedRect(ctx, x, y, width, height, radius) {
+    const r = Math.min(radius, width / 2, height / 2);
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + width - r, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + r);
+    ctx.lineTo(x + width, y + height - r);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - r, y + height);
+    ctx.lineTo(x + r, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
   }
 
   _drawGridRounding() {

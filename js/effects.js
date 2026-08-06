@@ -108,7 +108,7 @@ export class Effects {
       x, y, text, color, size,
       life: 1,
       start: performance.now(),
-      duration: EFFECTS.floatTextMs || 900,
+      duration: EFFECTS.floatTextDuration || 900,
       vy: -1.2,
     });
   }
