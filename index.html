@@ -3,98 +3,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Neon Snake — a polished, browser-based Snake game built with vanilla JavaScript.">
-  <meta name="theme-color" content="#12082a">
-  <title>Neon Snake | Arcade Game</title>
+  <meta name="description" content="SlitherSupreme — a vibrant, colorful 3D-style premium Snake game with power-ups, achievements, XP, and unlockable skins.">
+  <meta name="theme-color" content="#7ff3ff">
+  <title>SlitherSupreme | Premium Snake</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="ambient-bg" aria-hidden="true">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-    <div class="orb orb-4"></div>
-    <div class="grid-overlay"></div>
-    <div class="noise-overlay"></div>
+  <!-- ── Animated background ─────────────────────────────── -->
+  <div class="bg-scene" aria-hidden="true">
+    <canvas id="bgCanvas"></canvas>
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="aurora aurora-3"></div>
+    <div class="bubbles">
+      <span class="bubble" style="--x:8%;--d:0s;--s:18px"></span>
+      <span class="bubble" style="--x:22%;--d:2s;--s:26px"></span>
+      <span class="bubble" style="--x:35%;--d:5s;--s:14px"></span>
+      <span class="bubble" style="--x:52%;--d:1s;--s:30px"></span>
+      <span class="bubble" style="--x:68%;--d:4s;--s:20px"></span>
+      <span class="bubble" style="--x:82%;--d:3s;--s:16px"></span>
+      <span class="bubble" style="--x:90%;--d:6s;--s:24px"></span>
+    </div>
+    <div class="bg-grid"></div>
   </div>
 
   <main class="game-shell">
-    <div class="shell-glow" aria-hidden="true"></div>
-
+    <!-- Header -->
     <header class="game-header">
       <div class="brand">
-        <div class="brand-badge" aria-hidden="true">
-          <span class="brand-snake">🐍</span>
+        <div class="brand-badge" aria-hidden="true"><span class="brand-snake">🐍</span></div>
+        <div class="brand-text">
+          <p class="brand-kicker">Premium Edition</p>
+          <h1>SlitherSupreme</h1>
+          <p class="tagline">Eat · Power-up · Conquer</p>
         </div>
-        <div>
-          <p class="brand-kicker">Arcade Edition</p>
-          <h1>Neon Snake</h1>
-          <p class="tagline">Eat · Grow · Survive</p>
+      </div>
+
+      <div class="hud-top">
+        <div class="xp-pill">
+          <span id="level" class="xp-level">Lv 1</span>
+          <div class="xp-bar"><div id="xpFill" class="xp-fill"></div></div>
+          <span id="levelXP" class="xp-text">0/100 XP</span>
+        </div>
+        <div class="audio-btns">
+          <button id="musicBtn" class="icon-btn" type="button" aria-label="Toggle music">🎵</button>
+          <button id="soundBtn" class="icon-btn" type="button" aria-label="Toggle sound">🔊</button>
+          <button id="menuBtn" class="icon-btn" type="button" aria-label="Open menu">☰</button>
         </div>
       </div>
     </header>
 
+    <!-- Scoreboard -->
     <section class="scoreboard" aria-label="Game statistics">
-      <div class="stat-card" id="scoreCard">
+      <div class="stat-card stat-card--score" id="scoreCard">
         <span class="stat-label">Score</span>
-        <span class="score-row">
-          <span id="score" class="stat-value">0</span>
-          <span id="fireModeIcon" class="fire-mode-icon hidden" title="Fire Mode active!" aria-label="Fire Mode active">🔥</span>
-        </span>
+        <span class="stat-value" id="score">0</span>
       </div>
-      <div class="stat-card stat-card--accent">
+      <div class="stat-card stat-card--status">
         <span class="stat-label">Status</span>
-        <span id="gameStatus" class="stat-value stat-value--status">Ready</span>
+        <span class="stat-value stat-value--status" id="gameStatus">Ready</span>
       </div>
-      <div class="stat-card stat-card--gold">
+      <div class="stat-card stat-card--best">
         <span class="stat-label">Best</span>
-        <span id="highScore" class="stat-value">0</span>
+        <span class="stat-value" id="highScore">0</span>
       </div>
     </section>
 
-    <div class="board-wrapper">
-      <div class="board-frame" aria-hidden="true"></div>
-      <canvas id="gameCanvas" aria-label="Snake game board" role="img"></canvas>
+    <!-- Combo + power chips -->
+    <div class="hud-row">
+      <span id="combo" class="combo-badge">×2</span>
+      <div id="powerBar" class="power-bar"></div>
+    </div>
 
+    <!-- Board -->
+    <div class="board-wrapper" id="boardWrapper">
+      <div class="board-frame" aria-hidden="true"></div>
+      <canvas id="gameCanvas" aria-label="SlitherSupreme game board" role="img"></canvas>
+
+      <!-- In-game overlay -->
       <div id="overlay" class="overlay overlay--hidden" aria-live="polite">
-        <div class="overlay-card">
+        <div class="overlay-card glass-card">
           <div class="overlay-icon-wrap">
-            <div class="overlay-icon" id="overlayIcon" aria-hidden="true">▶</div>
+            <div class="overlay-icon" id="overlayIcon" aria-hidden="true">🐍</div>
           </div>
-          <h2 id="overlayTitle">Ready to Play</h2>
-          <p id="overlayMessage">Use arrow keys or touch controls to guide the snake.</p>
+          <h2 id="overlayTitle">Ready to Slither</h2>
+          <p id="overlayMessage">Collect crystals, stars &amp; magic fruit. Grab power-ups to go gold.</p>
           <p id="overlayScore" class="overlay-score hidden"></p>
           <button id="overlayBtn" class="btn btn--primary btn--overlay" type="button">Start Game</button>
         </div>
       </div>
     </div>
 
+    <!-- Action bar -->
     <div class="action-bar">
       <button id="startBtn" class="btn btn--primary" type="button">
-        <span class="btn-shine"></span>
-        <span class="btn-content">
-          <span class="btn-icon" aria-hidden="true">▶</span>
-          Start
-        </span>
+        <span class="btn-shine"></span><span class="btn-content"><span class="btn-icon">▶</span> Start</span>
       </button>
       <button id="pauseBtn" class="btn btn--secondary" type="button" disabled>
-        <span class="btn-content">
-          <span class="btn-icon" aria-hidden="true">❚❚</span>
-          Pause
-        </span>
+        <span class="btn-content"><span class="btn-icon">❚❚</span> Pause</span>
       </button>
       <button id="restartBtn" class="btn btn--ghost" type="button">
-        <span class="btn-content">
-          <span class="btn-icon" aria-hidden="true">↺</span>
-          Restart
-        </span>
+        <span class="btn-content"><span class="btn-icon">↺</span> Restart</span>
       </button>
     </div>
 
+    <!-- Touch controls -->
     <div class="touch-controls" aria-label="Touch direction controls">
       <button class="touch-btn touch-btn--up" data-direction="up" type="button" aria-label="Move up">▲</button>
       <div class="touch-row">
@@ -105,18 +122,94 @@
     </div>
 
     <footer class="game-footer">
-      <p class="hint">
-        <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> move
-        <span class="hint-sep">·</span>
-        <kbd>Space</kbd> pause
-      </p>
-      <button id="soundToggle" class="sound-toggle" type="button" aria-pressed="true" aria-label="Toggle sound">
-        <span class="sound-on">🔊</span>
-        <span class="sound-off hidden">🔇</span>
-      </button>
+      <p class="hint"><kbd>↑↓←→</kbd> move <span class="hint-sep">·</span> <kbd>Space</kbd> pause <span class="hint-sep">·</span> <kbd>M</kbd> mute</p>
     </footer>
   </main>
 
-  <script src="js/game.bundle.js"></script>
+  <!-- ── Main Menu ─────────────────────────────────────── -->
+  <div id="mainMenu" class="modal menu">
+    <div class="modal-card glass-card">
+      <div class="menu-logo">
+        <div class="menu-logo-badge">🐍</div>
+        <h2>SlitherSupreme</h2>
+        <p>Vibrant 3D Snake Adventure</p>
+      </div>
+      <div class="menu-buttons">
+        <button id="playBtn" class="btn btn--primary btn--big"><span class="btn-shine"></span><span class="btn-content"><span class="btn-icon">▶</span> Play</span></button>
+        <button id="settingsOpenBtn" class="btn btn--secondary"><span class="btn-content"><span class="btn-icon">🎨</span> Customize</span></button>
+        <button id="achOpenBtn" class="btn btn--secondary"><span class="btn-content"><span class="btn-icon">🏆</span> Achievements</span></button>
+        <button id="shopOpenBtn" class="btn btn--secondary"><span class="btn-content"><span class="btn-icon">🛍</span> Shop</span></button>
+      </div>
+      <p class="menu-hint">Press <kbd>Enter</kbd> to play · <kbd>Space</kbd> pause</p>
+    </div>
+  </div>
+
+  <!-- ── Settings Panel ─────────────────────────────────── -->
+  <div id="settingsPanel" class="modal panel">
+    <div class="panel-card glass-card">
+      <div class="panel-head"><h3>Customize</h3><button id="closeSettings" class="close-btn" type="button">✕</button></div>
+      <div class="panel-body">
+        <section class="panel-section">
+          <h4>Snake Skin</h4>
+          <div id="skinGrid" class="pick-grid"></div>
+        </section>
+        <section class="panel-section">
+          <h4>Board Theme</h4>
+          <div id="themeGrid" class="pick-grid"></div>
+        </section>
+        <section class="panel-section">
+          <h4>Difficulty</h4>
+          <div id="diffGrid" class="pick-grid pick-grid--diff"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Achievements Panel ─────────────────────────────── -->
+  <div id="achPanel" class="modal panel">
+    <div class="panel-card glass-card">
+      <div class="panel-head"><h3>Achievements</h3><button id="closeAch" class="close-btn" type="button">✕</button></div>
+      <p id="achProgress" class="panel-sub">Unlocked 0 / 0</p>
+      <div id="achList" class="ach-list"></div>
+    </div>
+  </div>
+
+  <!-- ── Shop Panel ─────────────────────────────────────── -->
+  <div id="shopPanel" class="modal panel">
+    <div class="panel-card glass-card">
+      <div class="panel-head"><h3>Shop</h3><button id="closeShop" class="close-btn" type="button">✕</button></div>
+      <p id="xpShop" class="panel-sub">Your XP: 0</p>
+      <div class="panel-body">
+        <section class="panel-section">
+          <h4>Snake Skins</h4>
+          <div id="shopSkins" class="shop-list"></div>
+        </section>
+        <section class="panel-section">
+          <h4>Board Themes</h4>
+          <div id="shopThemes" class="shop-list"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Toast ──────────────────────────────────────────── -->
+  <div id="toast" class="toast">
+    <strong id="toastTitle">Achievement</strong>
+    <span id="toastMsg">You unlocked something!</span>
+  </div>
+
+<!-- ── Scripts (loaded in dependency order) ─────────────── -->
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/powerups.js"></script>
+  <script src="js/achievements.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
